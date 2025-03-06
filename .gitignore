@@ -1,0 +1,21 @@
+# Ignore the virtual environment directory
+venv/
+
+# Ignore PyCharm configuration files (if you're using PyCharm)
+.idea/
+
+# Ignore VS Code configuration files (if you're using VS Code)
+.vscode/
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore macOS Finder specific files
+.DS_Store
+
+# Ignore Windows thumbnail cache (not usually needed in macOS, but useful for cross-platform)
+Thumbs.db
+
+# Ignore log files (if you're using log files in your project)
+*.log
