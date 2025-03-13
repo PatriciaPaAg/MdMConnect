@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DECIMAL, DateTime, REAL
 from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy.sql import func
+from app.database import Base
 
 # Definir la base de datos
 Base = declarative_base()
@@ -22,7 +23,7 @@ class MezcalHouse(Base):
 
     # Relación con brands
     brands = relationship('Brand', back_populates='mezcal_house')
-    
+
 class Brand(Base):
     __tablename__ = 'brands'
     
