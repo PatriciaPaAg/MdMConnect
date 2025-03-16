@@ -1,5 +1,5 @@
 
-from models.product import Product
+from models.products import Product
 
 class Salt(Product):
     def __init__(self, id, brand_id, price, stock, salt_type, size, units):

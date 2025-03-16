@@ -1,18 +1,22 @@
+from sqlalchemy import Column, Integer, DECIMAL, ForeignKey
+from sqlalchemy.orm import relationship
+from app.database import Base
 
-class Product:
-    def __init__(self, id, brand_id, price, stock):
-        self.id = id
-        self.brand_id = brand_id
-        self.price = price
-        self.stock = stock
+
+class Product(Base):
+    __tablename__ = 'products'
     
-    def update_stock(self, quantity):
-        self.stock += quantity
-    
-    def get_info(self):
-        return{
-            'id': self.id,
-            'brand_id': self.brand_id,
-            'price': self.price,
-            'stock': self.stock
-        }
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    brand_id = Column(Integer, ForeignKey('brands.id'), ondelete='CASCADE')
+    price = Column(DECIMAL(10, 2), nullable=False)
+    stock = Column(Integer, default=0)
+
+    # Relación con la tabla Brands
+    brand = relationship('Brand', back_populates='products')
+
+    # Relación con otras tablas específicas
+    # alcoholic_drink = relationship('AlcoholicDrink', uselist=False, back_populates='product')
+    # craft = relationship('Craft', uselist=False, back_populates='product')
+    # kit = relationship('Kit', uselist=False, back_populates='product')
+    # mezcal = relationship('Mezcal', uselist=False, back_populates='product')
+    # salt = relationship('Salt', uselist=False, back_populates='product')

@@ -1,18 +1,17 @@
+from sqlalchemy import Column, Integer, String, REAL, ForeignKey, CheckConstraint
+from sqlalchemy.orm import relationship
+from app.database import Base
+from .products import Product
 
-from models.product import Product
+class Mezcal(Base):
+    __tablename__ = 'mezcals'
+    
+    product_id = Column(Integer, ForeignKey('products.id', ondelete='CASCADE'), primary_key=True)
+    agave_type = Column(String(50), nullable=False)  # Espadín, Mexicano, etc.
+    aging = Column(String(50), nullable=False)  # Joven, Reposado, Añejo
+    detail = Column(String(50))  # Detalles adicionales, si es un ensamble
+    alcohol_content = Column(REAL, CheckConstraint('alcohol_content BETWEEN 34 AND 60'))  # En porcentaje
+    size_ml = Column(Integer, CheckConstraint('size_ml > 0'))
 
-class Mezcal(Product):
-    def __init__(self, id, brand_id, price, stock, agave_type, aging, alcohol_content):
-        super().__init__(id, brand_id, price, stock)
-        self.agave_type = agave_type
-        self.aging = aging
-        self.alcohol_content = alcohol_content
-
-    def get_info(self):
-        info = super().get_info()
-        info.update({
-            'agave_type': self.agave_type,
-            'aging': self.aging,
-            'alcohol_content': self.alcohol_content
-        })
-        return info
+    # Relación con productos
+    product = relationship('Product', back_populates='mezcal')
