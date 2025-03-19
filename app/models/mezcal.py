@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, REAL, ForeignKey, CheckConstraint
 from sqlalchemy.orm import relationship
-from app.database import Base
-from .products import Product
+from .base import Base
+from .product import Product
 
 class Mezcal(Base):
     __tablename__ = 'mezcals'

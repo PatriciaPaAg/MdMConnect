@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS alcoholic_drinks (
 -- Create the specific table for crafts
 CREATE TABLE IF NOT EXISTS crafts (
     product_id INTEGER PRIMARY KEY,
-    craft_type VARCHAR(50),  -- Type of craft (e.g. caballito, cuchara, botella pintada, etc.)
+    c_type VARCHAR(50),  -- Type of craft (e.g. caballito, cuchara, botella pintada, etc.)
     material VARCHAR(50),  -- Material (e.g. madera, barro rojo, etc.)
     size VARCHAR(50),  -- Size of the craft (e.g. chico, mediano, uni, etc.)
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, DECIMAL, ForeignKey
 from sqlalchemy.orm import relationship
-from app.database import Base
+from .base import Base
 
 
 class Product(Base):
@@ -15,8 +15,8 @@ class Product(Base):
     brand = relationship('Brand', back_populates='products')
 
     # Relación con otras tablas específicas
-    # alcoholic_drink = relationship('AlcoholicDrink', uselist=False, back_populates='product')
-    # craft = relationship('Craft', uselist=False, back_populates='product')
-    # kit = relationship('Kit', uselist=False, back_populates='product')
-    # mezcal = relationship('Mezcal', uselist=False, back_populates='product')
-    # salt = relationship('Salt', uselist=False, back_populates='product')
+    alcoholic_drink = relationship('AlcoholicDrink', uselist=False, back_populates='product')
+    craft = relationship('Craft', uselist=False, back_populates='product')
+    kit = relationship('Kit', uselist=False, back_populates='product')
+    mezcal = relationship('Mezcal', uselist=False, back_populates='product')
+    salt = relationship('Salt', uselist=False, back_populates='product')
