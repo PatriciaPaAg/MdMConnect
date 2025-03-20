@@ -8,11 +8,11 @@ class Product(Base):
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     brand_id = Column(Integer, ForeignKey('brands.id', ondelete='CASCADE'))
-    price = Column(DECIMAL(10, 2), nullable=False)
     stock = Column(Integer, default=0)
+    price = Column(DECIMAL(10, 2), nullable=False)
 
     # Relación con la tabla Brands
-    brand = relationship('Brand', back_populates='products')
+    brand = relationship('Brand', back_populates='product')
 
     # Relación con otras tablas específicas
     alcoholic_drink = relationship('AlcoholicDrink', uselist=False, back_populates='product')

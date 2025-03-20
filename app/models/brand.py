@@ -10,5 +10,5 @@ class Brand(Base):
     mezcal_house_id = Column(Integer, ForeignKey('mezcal_houses.id', ondelete='CASCADE'))
 
     # Relaciones
-    mezcal_house = relationship('MezcalHouse', back_populates='brands')
-    products = relationship('Product', back_populates='brand')
+    product = relationship('Product', back_populates='brand')
+    mezcal_house = relationship('MezcalHouse', back_populates='brand')

@@ -30,13 +30,13 @@ VALUES (@product_id, 'Tóbala', 'Joven', 'Edición Aniversario', 45.0, 750);
 INSERT INTO products (p_type, brand_id, stock, price) 
 VALUES ('Craft', 1, 100, 15.00);
 SET @product_id = LAST_INSERT_ID();
-INSERT INTO crafts (product_id, craft_type, material, size)
+INSERT INTO crafts (product_id, c_type, material, size)
 VALUES (@product_id, 'Vaso de veladora', 'Vidrio', 'Uni');
 
 INSERT INTO products (p_type, brand_id, stock, price) 
 VALUES ('Craft', 1, 25, 50.00);
 SET @product_id = LAST_INSERT_ID();
-INSERT INTO crafts (product_id, craft_type, material, size)
+INSERT INTO crafts (product_id, c_type, material, size)
 VALUES (@product_id, 'Plato', 'Barro Rojo', 'Chico');
 
 

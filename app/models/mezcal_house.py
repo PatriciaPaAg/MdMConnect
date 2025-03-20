@@ -12,4 +12,4 @@ class MezcalHouse(Base):
     contactNumber = Column(String(10))
 
     # Relación con brands
-    brands = relationship('Brand', back_populates='mezcal_house')
+    brand = relationship('Brand', back_populates='mezcal_house')
