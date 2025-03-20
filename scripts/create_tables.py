@@ -33,7 +33,6 @@ class Brand(Base):
 
     # Relación con mezcal_houses
     mezcal_house = relationship('MezcalHouse', back_populates='brands')
-
     # Relación con productos
     products = relationship('Product', back_populates='brand')
 

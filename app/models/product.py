@@ -7,7 +7,7 @@ class Product(Base):
     __tablename__ = 'products'
     
     id = Column(Integer, primary_key=True, autoincrement=True)
-    brand_id = Column(Integer, ForeignKey('brands.id'), ondelete='CASCADE')
+    brand_id = Column(Integer, ForeignKey('brands.id', ondelete='CASCADE'))
     price = Column(DECIMAL(10, 2), nullable=False)
     stock = Column(Integer, default=0)
 
