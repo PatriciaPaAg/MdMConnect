@@ -25,7 +25,7 @@ CREATE INDEX idx_mezcal_house_id ON brands(mezcal_house_id);
 -- Create the main products table (products)
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    p_type VARCHAR(20),
+    p_type VARCHAR(20),  --Type of product (e.g. alcoholic_drink, mezcal, craft, kit, salt)
     brand_id INTEGER,
     stock INTEGER DEFAULT 0,
     price DECIMAL(10,2) CHECK (price > 0),

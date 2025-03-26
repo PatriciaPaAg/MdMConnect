@@ -1,13 +1,21 @@
-from sqlalchemy import Column, Integer, DECIMAL, ForeignKey
+from sqlalchemy import Column, Integer, DECIMAL, ForeignKey, String
 from sqlalchemy.orm import relationship
 from .base import Base
+from enum import Enum
 
+class ProductType(Enum):
+    MEZCAL = 'mezcal'
+    ALCOHOLIC_DRINK = 'alcoholic_drink'
+    CRAFT = 'craft'
+    SALT = 'salt'
+    KIT = 'kit'
 
 class Product(Base):
     __tablename__ = 'products'
     
     id = Column(Integer, primary_key=True, autoincrement=True)
-    brand_id = Column(Integer, ForeignKey('brands.id', ondelete='CASCADE'))
+    p_type = Column(String(20), nullable=False)  # Tipo de producto
+    brand_id = Column(Integer, ForeignKey('brands.id', ondelete='CASCADE'), nullable=False)
     stock = Column(Integer, default=0)
     price = Column(DECIMAL(10, 2), nullable=False)
 
@@ -20,3 +28,4 @@ class Product(Base):
     kit = relationship('Kit', uselist=False, back_populates='product')
     mezcal = relationship('Mezcal', uselist=False, back_populates='product')
     salt = relationship('Salt', uselist=False, back_populates='product')
+ 

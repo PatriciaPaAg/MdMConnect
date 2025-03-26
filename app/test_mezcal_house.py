@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from models.base import Base, engine
-from repositories.mezcal_house_repository import MezcalHouseRepository
+from app.repositories.mezcal_house_repo import MezcalHouseRepository
 
 Base.metadata.create_all(bind=engine)
 session = Session(bind=engine)

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from models.base import Base, engine
-from repositories.mezcal_repository import MezcalRepository
+from app.repositories.mezcal_repo import MezcalRepository
 # from models.mezcal_house import MezcalHouse
 # from models.brand import Brand
 # from models.product import Product
