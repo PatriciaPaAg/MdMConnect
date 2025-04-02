@@ -54,8 +54,8 @@ class Product(Base):
     mezcal = relationship('Mezcal', uselist=False, back_populates='product')
     salt = relationship('Salt', uselist=False, back_populates='product')
 
-class InventoryMovement(Base):
-    __tablename__ = 'inventory_movements'
+class StockMovement(Base):
+    __tablename__ = 'stock_movements'
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     product_id = Column(Integer, ForeignKey('products.id'))

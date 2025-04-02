@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS products (
 
 CREATE INDEX idx_brand_id ON products(brand_id);
 
--- Create a table to store history of movements (inventory_movements)
-CREATE TABLE IF NOT EXISTS inventory_movements (
+-- Create a table to store history of movements (stock_movements)
+CREATE TABLE IF NOT EXISTS stock_movements (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     product_id INTEGER,
     movement_type VARCHAR(50),  -- 'entrada' o 'salida'
@@ -86,7 +86,6 @@ CREATE TABLE IF NOT EXISTS mezcals (
 CREATE TABLE IF NOT EXISTS salts (
     product_id INTEGER PRIMARY KEY,
     s_type VARCHAR(50),  -- Type of salt (e.g, gusano, chapulin)
-    size INTEGER CHECK (size > 0),
-    units VARCHAR(50),  -- Units of the size (e.g. gr, oz)
+    size_units VARCHAR(50),  -- Units of the size (e.g. gr, oz)
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );

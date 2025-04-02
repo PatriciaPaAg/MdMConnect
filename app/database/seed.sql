@@ -57,13 +57,13 @@ INSERT INTO products (p_type, brand_id, stock, price)
 VALUES ('Salt', 1, 50, 100);
 SET @product_id = LAST_INSERT_ID();
 INSERT INTO salts (product_id, s_type, size, units)
-VALUES (@product_id, 'Gusano', '1', 'oz');
+VALUES (@product_id, 'Gusano', '1 oz');
 
 INSERT INTO products (p_type, brand_id, stock, price) 
 VALUES ('Salt', 1, 15, 150);
 SET @product_id = LAST_INSERT_ID();
-INSERT INTO salts (product_id, s_type, size, units)
-VALUES (@product_id, 'Gusano', '250', 'gr');
+INSERT INTO salts (product_id, s_type, size_units)
+VALUES (@product_id, 'Gusano', '250 gr');
 
 
 INSERT INTO products (p_type, brand_id, stock, price) 

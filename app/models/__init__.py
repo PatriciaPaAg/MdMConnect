@@ -7,4 +7,4 @@ from .craft import Craft
 from .kit import Kit
 from .mezcal import Mezcal
 from .salt import Salt
-from .inventory_movement import InventoryMovement
+from .stock_movements import StockMovement

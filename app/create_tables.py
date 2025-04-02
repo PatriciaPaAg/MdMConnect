@@ -7,7 +7,7 @@ from models.craft import Craft
 from models.kit import Kit
 from models.mezcal import Mezcal
 from models.salt import Salt
-from models.inventory_movement import InventoryMovement
+from app.models.stock_movements import StockMovement
 
 def create_tables():
     print("Baking the tables...")

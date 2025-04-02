@@ -20,12 +20,14 @@ class ProductRepo:
         self.db_session.commit()
 
         if p_type == ProductType.MEZCAL.value:
-            return MezcalRepo(self.db_session).add_mezcal(new_product.id, product_data)
+            return MezcalRepo(self.db_session).create_mezcal(new_product.id, product_data)
 
         return new_product
     
     def get_all_products(self):
-        return self.db_session.query(Product).all()
+        products = self.db_session.query(Product).all()
+        return [product.to_dict() for product in products]
+        # return self.db_session.query(Product).all()
     
     def get_product_by_id(self, product_id):
         return self.db_session.query(Product).filter(Product.id == product_id).first()

@@ -3,8 +3,8 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from .base import Base
 
-class InventoryMovement(Base):
-    __tablename__ = 'inventory_movements'
+class StockMovement(Base):
+    __tablename__ = 'stock_movements'
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     product_id = Column(Integer, ForeignKey('products.id', ondelete='CASCADE'))

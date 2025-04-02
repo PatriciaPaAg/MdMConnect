@@ -19,6 +19,15 @@ class Product(Base):
     stock = Column(Integer, default=0)
     price = Column(DECIMAL(10, 2), nullable=False)
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'p_type': self.p_type,
+            'brand_id': self.brand_id,
+            'stock': self.stock,
+            'price': float(self.price)  
+        }
+
     # Relación con la tabla Brands
     brand = relationship('Brand', back_populates='product')
 

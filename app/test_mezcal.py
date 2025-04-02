@@ -9,7 +9,7 @@ from app.repositories.mezcal_repo import MezcalRepository
 # from models.kit import Kit
 # from models.mezcal import Mezcal
 # from models.salt import Salt
-# from models.inventory_movement import InventoryMovement
+# from models.stock_movement import StockMovement
 
 Base.metadata.create_all(bind=engine)
 session = Session(bind=engine)
