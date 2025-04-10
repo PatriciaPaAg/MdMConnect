@@ -1,6 +1,10 @@
 from sqlalchemy.orm import Session
 from models.product import Product, ProductType
 from .mezcal_repo import MezcalRepo
+from .alcoho_drink_repo import AlcohoDrinkRepo
+from .craft_repo import CraftRepo
+from .kit_repo import KitRepo
+from .salt_repo import SaltRepo 
 
 class ProductRepo:
     def __init__(self, db_session: Session):
@@ -21,7 +25,14 @@ class ProductRepo:
 
         if p_type == ProductType.MEZCAL.value:
             return MezcalRepo(self.db_session).create_mezcal(new_product.id, product_data)
-
+        elif p_type == ProductType.ALCOHOLIC_DRINK.value:
+            return AlcohoDrinkRepo(self.db_session).create_alcoho_drink(new_product.id, product_data)
+        elif p_type == ProductType.CRAFT.value:
+            return CraftRepo(self.db_session).create_craft(new_product.id, product_data)
+        elif p_type == ProductType.KIT.value:
+            return KitRepo(self.db_session).create_kit(new_product.id, product_data)
+        elif p_type == SaltRepo.SALT.value:
+            return SaltRepo(self.db_session).create_salt(new_product.id, product_data)
         return new_product
     
     def get_all_products(self):
