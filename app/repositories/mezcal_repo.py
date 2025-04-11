@@ -10,7 +10,7 @@ class MezcalRepo:
             product_id=product_id,
             agave_type=mezcal_data['agave_type'],
             aging=mezcal_data['aging'],
-            detail=mezcal_data['detail'],
+            detail=mezcal_data.get('detail'),
             alcohol_content=mezcal_data['alcohol_content'],
             size_ml=mezcal_data['size_ml']
         )

@@ -5,7 +5,7 @@ from .alcoho_drink_repo import AlcohoDrinkRepo
 from .craft_repo import CraftRepo
 from .kit_repo import KitRepo
 from .salt_repo import SaltRepo 
-
+ 
 class ProductRepo:
     def __init__(self, db_session: Session):
         self.db_session = db_session
