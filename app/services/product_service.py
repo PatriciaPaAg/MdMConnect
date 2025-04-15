@@ -3,12 +3,6 @@ from enums.product_enum import ProductType
 from repositories.brand_repo import BrandRepo
 
 
-
-# ################# ADDDDDD VALID PRODUCT TYPES AND LOGICCCCCCC ######################
-# ################# ADDDDDD VALID PRODUCT TYPES AND LOGICCCCCCC ######################      
-# ################# ADDDDDD VALID PRODUCT TYPES AND LOGICCCCCCC ######################
-# ################# ADDDDDD VALID PRODUCT TYPES AND LOGICCCCCCC ######################
-
 class ProductService:
     def __init__(self, db_session):
         self.product_repo = ProductRepo(db_session)

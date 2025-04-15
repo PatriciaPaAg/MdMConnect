@@ -1,10 +1,11 @@
 from sqlalchemy.orm import Session
-from models.product import Product, ProductType
+from models.product import Product
 from .mezcal_repo import MezcalRepo
 from .alcoho_drink_repo import AlcohoDrinkRepo
 from .craft_repo import CraftRepo
 from .kit_repo import KitRepo
 from .salt_repo import SaltRepo 
+from enums.product_enum import ProductType
  
 class ProductRepo:
     def __init__(self, db_session: Session):

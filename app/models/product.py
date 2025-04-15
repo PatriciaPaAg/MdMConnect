@@ -1,14 +1,6 @@
 from sqlalchemy import Column, Integer, DECIMAL, ForeignKey, String
 from sqlalchemy.orm import relationship
 from .base import Base
-from enum import Enum
-
-class ProductType(Enum):
-    MEZCAL = 'mezcal'
-    ALCOHOLIC_DRINK = 'alcoholic_drink'
-    CRAFT = 'craft'
-    SALT = 'salt'
-    KIT = 'kit'
  
 class Product(Base):
     __tablename__ = 'products'
