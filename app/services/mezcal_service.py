@@ -1,5 +1,6 @@
 from repositories.mezcal_repo import MezcalRepo
 from sqlalchemy.exc import SQLAlchemyError
+from enums.mezcal_enum import MezcalAging
 
 # ################# ADDDDDD VALID AGING AND LOGICCCCCCC ######################
 
@@ -12,12 +13,22 @@ class MezcalService:
         for field in required_fields:
             if field not in mezcal_data:
                 raise ValueError(f"Missing field '{field}' in mezcal data.")
-            
+        
         # Validate the field detail, if the agave_type is 'Ensamble'
-        agave_type = mezcal_data.get('agave_type')
+        agave_type = mezcal_data['agave_type']
         detail = mezcal_data.get('detail')
         if agave_type == 'Ensamble' and not detail:
-            raise ValueError("Detail is required when agave_type is 'Ensamble'.")        
+            raise ValueError("Detail is required when agave_type is 'Ensamble'.") 
+        aging = mezcal_data['aging']
+        if aging not in [m_aging for m_aging in MezcalAging]:
+            raise ValueError(f"Invalid aging type: {aging}. Must be one of {[aging.value for aging in MezcalAging]}.")
+        
+        if mezcal_data['alcohol_content'] < 35 or mezcal_data['alcohol_content'] > 55:
+            raise ValueError("Alcohol content must be between 35 and 55 percent.")
+        
+        if mezcal_data['size_ml'] <= 0:
+            raise ValueError("Size in ml must be greater than 0.")
+
         return self.mezcal_repo.create_mezcal(product_id, mezcal_data)
 
     def get_all_mezcals(self):
@@ -33,32 +44,22 @@ class MezcalService:
         mezcal = self.get_mezcal_by_id(mezcal_id)
         if not mezcal:
             raise ValueError(f"Mezcal with product_id {mezcal_id} not found.")
-        
-        if agave_type:
-            mezcal.agave_type = agave_type
-        if aging:
-            mezcal.aging = aging
-        if alcohol_content:
-            mezcal.alcohol_content = alcohol_content
-        if size_ml:
-            mezcal.size_ml = size_ml
 
         # Validate the field detail, if the agave_type is 'Ensamble'
         if agave_type == 'Ensamble' or mezcal.agave_type == 'Ensamble':
             if not detail:
                 raise ValueError("Detail is required when agave_type is 'Ensamble'.")
-        
-        if detail:
-            mezcal.detail = detail
+        if aging:
+            if aging not in [m_aging for m_aging in MezcalAging]:
+                raise ValueError(f"Invalid aging type: {aging}. Must be one of {[aging.value for aging in MezcalAging]}.")
+        if alcohol_content:
+            if alcohol_content < 35 or alcohol_content > 55:
+                raise ValueError("Alcohol content must be between 35 and 55 percent.")
+        if size_ml:
+            if size_ml <= 0:
+                raise ValueError("Size in ml must be greater than 0.")
 
-        try:
-            self.db_session.commit()
-            self.db_session.refresh(mezcal)
-        except SQLAlchemyError as e:
-            self.db_session.rollback()
-            raise RuntimeError(f"Error updating mezcal: {str(e)}")
-        
-        return mezcal
+        return self.mezcal_repo.update_mezcal(mezcal_id, agave_type, aging, detail, alcohol_content, size_ml)
 
     def delete_mezcal(self, mezcal_id: int):
         mezcal = self.mezcal_repo.get_mezcal_by_id(mezcal_id)
