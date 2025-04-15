@@ -9,7 +9,7 @@ class ProductType(Enum):
     CRAFT = 'craft'
     SALT = 'salt'
     KIT = 'kit'
-
+ 
 class Product(Base):
     __tablename__ = 'products'
     

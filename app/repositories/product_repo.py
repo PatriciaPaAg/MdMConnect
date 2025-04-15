@@ -43,13 +43,13 @@ class ProductRepo:
     def get_product_by_id(self, product_id):
         return self.db_session.query(Product).filter(Product.id == product_id).first()
     
-    def update_product(self, product_id, price=None, stock=None):
+    def update_product(self, product_id, stock=None, price=None):
         product = self.get_product_by_id(product_id)
         if product:
-            if price is not None:
-                product.price = price
             if stock is not None:
                 product.stock = stock
+            if price is not None:
+                product.price = price
             self.db_session.commit()
             self.db_session.refresh(product)
         return product
