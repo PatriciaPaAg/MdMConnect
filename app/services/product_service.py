@@ -1,11 +1,11 @@
-from app.repositories.product_repo import ProductRepo
+from repositories.product_repo import ProductRepo
 from enums.product_enum import ProductType
 from repositories.brand_repo import BrandRepo
-
+  
 
 class ProductService:
-    def __init__(self, db_session):
-        self.product_repo = ProductRepo(db_session)
+    def __init__(self, product_repo: ProductRepo):
+        self.product_repo = product_repo
 
     def create_product(self, data: dict):
         required_fields = ['p_type', 'brand_id', 'stock', 'price']

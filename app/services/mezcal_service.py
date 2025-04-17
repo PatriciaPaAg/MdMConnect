@@ -1,8 +1,7 @@
 from repositories.mezcal_repo import MezcalRepo
-from sqlalchemy.exc import SQLAlchemyError
 from enums.mezcal_enum import MezcalAging
-
-# ################# ADDDDDD VALID AGING AND LOGICCCCCCC ######################
+from repositories.product_repo import ProductRepo
+ 
 
 class MezcalService:
     def __init__(self, mezcal_repo: MezcalRepo):
@@ -13,6 +12,10 @@ class MezcalService:
         for field in required_fields:
             if field not in mezcal_data:
                 raise ValueError(f"Missing field '{field}' in mezcal data.")
+        
+        product = ProductRepo.get_product_by_id(product_id)
+        if product is None:
+            raise ValueError(f"Product with ID {product_id} not found.")
         
         # Validate the field detail, if the agave_type is 'Ensamble'
         agave_type = mezcal_data['agave_type']
@@ -38,7 +41,7 @@ class MezcalService:
         mezcal = self.mezcal_repo.get_mezcal_by_id(mezcal_id)
         if not mezcal:
             raise ValueError(f"Mezcal with product_id {mezcal_id} not found.")
-        return mezcal
+        return mezcal.to_dict()
 
     def update_mezcal(self, mezcal_id: int, agave_type=None, aging=None, detail=None, alcohol_content=None, size_ml=None):
         mezcal = self.get_mezcal_by_id(mezcal_id)

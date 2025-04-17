@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from models.mezcal_house import MezcalHouse
 
-class MezclHausRepo:
+class MezcalHouseRepo:
     def __init__(self, db_session: Session):
         self.db_session = db_session
 
@@ -12,7 +12,7 @@ class MezclHausRepo:
             contactNumber=mezcal_house_data.get('contactNumber')
         )
 
-    def get_all_houses(self):
+    def get_all_mezcal_houses(self):
         return self.db_session.query(MezcalHouse).all()
     
     def get_mezcal_house_by_id(self, mezcal_house_id):

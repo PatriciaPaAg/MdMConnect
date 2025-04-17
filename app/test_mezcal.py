@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from models.base import Base, engine
-from app.repositories.mezcal_repo import MezcalRepository
+from app.repositories.mezcal_repo import MezcalRepo
 # from models.mezcal_house import MezcalHouse
 # from models.brand import Brand
 # from models.product import Product
@@ -14,7 +14,7 @@ from app.repositories.mezcal_repo import MezcalRepository
 Base.metadata.create_all(bind=engine)
 session = Session(bind=engine)
 
-mezcal_repo = MezcalRepository(session)
+mezcal_repo = MezcalRepo(session)
 
 # new_product = product_repo.create_product(brand_id=1, stock=11, price=280.00)
 # print(f"Proudct created: {new_product}")
