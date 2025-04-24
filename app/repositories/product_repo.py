@@ -24,16 +24,16 @@ class ProductRepo:
         self.db_session.add(new_product)
         self.db_session.commit()
 
-        if p_type == ProductType.MEZCAL.value:
-            return MezcalRepo(self.db_session).create_mezcal(new_product.id, product_data)
-        elif p_type == ProductType.ALCOHOLIC_DRINK.value:
-            return AlcohoDrinkRepo(self.db_session).create_alcoho_drink(new_product.id, product_data)
-        elif p_type == ProductType.CRAFT.value:
-            return CraftRepo(self.db_session).create_craft(new_product.id, product_data)
-        elif p_type == ProductType.KIT.value:
-            return KitRepo(self.db_session).create_kit(new_product.id, product_data)
-        elif p_type == SaltRepo.SALT.value:
-            return SaltRepo(self.db_session).create_salt(new_product.id, product_data)
+        # if p_type == ProductType.MEZCAL.value:
+        #     return MezcalRepo(self.db_session).create_mezcal(new_product.id, product_data)
+        # elif p_type == ProductType.ALCOHOLIC_DRINK.value:
+        #     return AlcohoDrinkRepo(self.db_session).create_alcoho_drink(new_product.id, product_data)
+        # elif p_type == ProductType.CRAFT.value:
+        #     return CraftRepo(self.db_session).create_craft(new_product.id, product_data)
+        # elif p_type == ProductType.KIT.value:
+        #     return KitRepo(self.db_session).create_kit(new_product.id, product_data)
+        # elif p_type == SaltRepo.SALT.value:
+        #     return SaltRepo(self.db_session).create_salt(new_product.id, product_data)
         return new_product
     
     def get_all_products(self):

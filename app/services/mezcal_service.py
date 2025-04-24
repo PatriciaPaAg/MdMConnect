@@ -4,16 +4,18 @@ from repositories.product_repo import ProductRepo
  
 
 class MezcalService:
-    def __init__(self, mezcal_repo: MezcalRepo):
+    def __init__(self, mezcal_repo: MezcalRepo, product_repo: ProductRepo):
         self.mezcal_repo = mezcal_repo
+        self.product_repo = product_repo
 
     def create_mezcal(self, product_id: int, mezcal_data: dict):
         required_fields = ['agave_type', 'aging', 'alcohol_content', 'size_ml']
         for field in required_fields:
             if field not in mezcal_data:
                 raise ValueError(f"Missing field '{field}' in mezcal data.")
+        print(f"Creating mezcal with product_id: {product_id} and data: {mezcal_data}")
+        product = self.product_repo.get_product_by_id(product_id)
         
-        product = ProductRepo.get_product_by_id(product_id)
         if product is None:
             raise ValueError(f"Product with ID {product_id} not found.")
         
@@ -23,7 +25,7 @@ class MezcalService:
         if agave_type == 'Ensamble' and not detail:
             raise ValueError("Detail is required when agave_type is 'Ensamble'.") 
         aging = mezcal_data['aging']
-        if aging not in [m_aging for m_aging in MezcalAging]:
+        if aging not in [m_aging.value for m_aging in MezcalAging]:
             raise ValueError(f"Invalid aging type: {aging}. Must be one of {[aging.value for aging in MezcalAging]}.")
         
         if mezcal_data['alcohol_content'] < 35 or mezcal_data['alcohol_content'] > 55:
